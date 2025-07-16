@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>🏐 Beach Volleyball Signup - July 19</title>
+  <title>KakaReza Beach Volleyball</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
@@ -10,12 +11,22 @@
       background: linear-gradient(to bottom right, #00c6ff, #0072ff);
       color: white;
       text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.1);
       padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
     }
 
     h1 {
-      font-size: 2.5rem;
-      text-shadow: 2px 2px #000;
+      font-size: 2.2rem;
+      text-shadow: 1px 1px #000;
+      margin-bottom: 0.5rem;
       animation: glow 2s ease-in-out infinite alternate;
     }
 
@@ -24,30 +35,21 @@
       to { text-shadow: 0 0 20px #ff0, 0 0 30px #0ff; }
     }
 
-    .container {
-      max-width: 400px;
-      margin: auto;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    }
-
-    label {
-      font-size: 1.2rem;
-      display: block;
-      margin-bottom: 1rem;
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin: 0.5rem 0 1.5rem;
     }
 
     input[type="text"] {
       width: 100%;
-      padding: 0.7rem;
+      padding: 0.8rem;
       font-size: 1rem;
       border-radius: 10px;
       border: none;
       outline: none;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
     }
 
     button {
@@ -58,7 +60,7 @@
       border: none;
       border-radius: 10px;
       cursor: pointer;
-      transition: background 0.3s;
+      margin-bottom: 1.5rem;
     }
 
     button:hover {
@@ -66,21 +68,54 @@
     }
 
     .info {
-      margin-top: 2rem;
-      font-size: 1rem;
-      line-height: 1.5;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+    }
+
+    .checkboxes {
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      text-align: left;
+    }
+
+    .checkboxes label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 6px 0;
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .container {
+        padding: 1.5rem 1rem;
+      }
+
+      button {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>🏖️ Beach Volleyball Entry Form</h1>
+    <h1>🏐 KakaReza Entry Form</h1>
     <p>Hey guys! Please complete the form for <strong>Saturday, July 19th</strong><br>Games start at <strong>9:00 AM</strong> ⏰</p>
+
     <form id="volleyballForm">
       <label for="name">Your Name:</label>
       <input type="text" id="name" placeholder="Enter your name" required>
       <button type="submit">Submit ✉️</button>
+
+      <div class="checkboxes">
+        <label><input type="checkbox" checked disabled> I don’t want a Speedo. I have my own gear.</label>
+        <label><input type="checkbox" checked disabled> I opt out of narmish before the games.</label>
+      </div>
     </form>
+
     <div class="info">
       🎯 We aim for <strong>10 players</strong>, but we'll confirm with <strong>8</strong><br><br>
       🚗 Best to <strong>carpool</strong>. We can take 2–3 cars from KP in Parsippany.  
@@ -93,8 +128,8 @@
       e.preventDefault();
       const name = document.getElementById("name").value.trim();
       if (name) {
-        const subject = encodeURIComponent("Beach Volleyball Signup - July 19");
-        const body = encodeURIComponent(`Hey, this is ${name} and I'm in for beach volleyball on Saturday!`);
+        const subject = encodeURIComponent("KakaReza Volleyball Signup - July 19");
+        const body = encodeURIComponent(`Hey, this is ${name} and I'm in for beach volleyball on Saturday!\n\n✅ I have my own gear.\n✅ I opt out of narmish.`);
         const mailtoLink = `mailto:nycsal@gmail.com?subject=${subject}&body=${body}`;
         window.location.href = mailtoLink;
       } else {
