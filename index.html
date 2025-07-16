@@ -1,1 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🏐 Beach Volleyball Signup - July 19</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #00c6ff, #0072ff);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
 
+    h1 {
+      font-size: 2.5rem;
+      text-shadow: 2px 2px #000;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff; }
+      to { text-shadow: 0 0 20px #ff0, 0 0 30px #0ff; }
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    label {
+      font-size: 1.2rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.7rem;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      margin-bottom: 1.5rem;
+    }
+
+    button {
+      background: #ff4081;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #f50057;
+    }
+
+    .info {
+      margin-top: 2rem;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏖️ Beach Volleyball Entry Form</h1>
+    <p>Hey guys! Please complete the form for <strong>Saturday, July 19th</strong><br>Games start at <strong>9:00 AM</strong> ⏰</p>
+    <form id="volleyballForm">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+      <button type="submit">Submit ✉️</button>
+    </form>
+    <div class="info">
+      🎯 We aim for <strong>10 players</strong>, but we'll confirm with <strong>8</strong><br><br>
+      🚗 Best to <strong>carpool</strong>. We can take 2–3 cars from KP in Parsippany.  
+      Please leave extra cars in the municipal lot across from KP.
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("volleyballForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      if (name) {
+        const subject = encodeURIComponent("Beach Volleyball Signup - July 19");
+        const body = encodeURIComponent(`Hey, this is ${name} and I'm in for beach volleyball on Saturday!`);
+        const mailtoLink = `mailto:nycsal@gmail.com?subject=${subject}&body=${body}`;
+        window.location.href = mailtoLink;
+      } else {
+        alert("Please enter your name!");
+      }
+    });
+  </script>
+</body>
+</html>
