@@ -1,190 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>KakaReza Beach Volleyball Form</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #00c6ff, #0072ff);
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hand Focus Trainer</title>
 
-    .container {
-      max-width: 500px;
-      margin: auto;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    }
+<style>
+:root {
+  --bg1: #0f2027;
+  --bg2: #203a43;
+  --bg3: #2c5364;
+  --accent: #ffd166;
+  --card: rgba(255,255,255,0.12);
+  --text: #ffffff;
+}
 
-    .brand {
-      font-size: 2.2rem;
-      font-weight: bold;
-      color: #fff700;
-      text-shadow: 2px 2px #000;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
+* { box-sizing: border-box; }
 
-    h2 {
-      margin: 0.3rem 0;
-      font-size: 1.6rem;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .date {
-      font-size: 1.1rem;
-      color: #ffeaa7;
-      margin-bottom: 1rem;
-    }
+.app {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+}
 
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #fff; }
-      to { text-shadow: 0 0 20px #ff0, 0 0 30px #0ff; }
-    }
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    .location {
-      margin: 0.5rem 0 1rem;
-      font-size: 1rem;
-      background: rgba(255,255,255,0.15);
-      padding: 0.6rem;
-      border-radius: 12px;
-    }
+.header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
 
-    .times {
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-    }
+.header p {
+  opacity: 0.8;
+  margin-top: 6px;
+}
 
-    label {
-      font-size: 1.1rem;
-      display: block;
-      margin: 1rem 0 0.5rem;
-    }
+.card {
+  background: var(--card);
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
 
-    input[type="text"] {
-      width: 100%;
-      padding: 0.8rem;
-      font-size: 1rem;
-      border-radius: 10px;
-      border: none;
-      outline: none;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-      margin-bottom: 1.5rem;
-    }
+.exercise-name {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
 
-    button {
-      background: #ff4081;
-      color: white;
-      padding: 0.8rem 1.5rem;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-bottom: 1.5rem;
-    }
+.hand {
+  font-size: 5rem;
+  margin: 20px 0;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+}
 
-    button:hover {
-      background: #f50057;
-    }
+.timer {
+  font-size: 2.4rem;
+  font-weight: bold;
+}
 
-    .info {
-      font-size: 0.95rem;
-      margin-top: 1rem;
-    }
+.round {
+  margin-top: 8px;
+  opacity: 0.85;
+}
 
-    .checkboxes {
-      margin-top: 1.5rem;
-      font-size: 0.8rem;
-      text-align: left;
-    }
+.controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
 
-    .checkboxes label {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin: 8px 0;
-    }
+button {
+  flex: 1;
+  padding: 14px;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: var(--accent);
+  color: #000;
+  font-weight: 600;
+}
 
-    .checkboxes input[type="checkbox"] {
-      transform: scale(1.2);
-      margin-top: 2px;
-    }
+button.secondary {
+  background: #ffffff33;
+  color: #fff;
+}
 
-    .footer-quote {
-      margin-top: 1.2rem;
-      font-style: italic;
-      font-size: 0.9rem;
-      opacity: 0.85;
-    }
+@keyframes openClose {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(0.7); }
+}
 
-    @media screen and (max-width: 600px) {
-      .brand { font-size: 1.8rem; }
-      h2 { font-size: 1.4rem; }
-      .container { padding: 1.5rem 1rem; }
-      button { width: 100%; }
-    }
-  </style>
+@keyframes twist {
+  0%,100% { transform: rotate(0deg); }
+  50% { transform: rotate(25deg); }
+}
+
+@keyframes pinch {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(0.85) rotate(-10deg); }
+}
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+@keyframes stretch {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes tap {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(15px); }
+}
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="brand">KakaReza</div>
-    <h2>Beach Volleyball Entry Form</h2>
-    <div class="date">📅 Saturday, July 19</div>
-
-    <div class="location">
-      📍 Meet at Ocean & 3rd Ave in Belmar. Park and walk to the court.
-    </div>
-
-    <div class="times">
-      ⏰ Meet at <strong>8:30 AM</strong> – Game starts at <strong>9:00 AM</strong><br>
-      🚗 If you want to carpool, leave Parsippany by <strong>7:30 AM</strong>
-    </div>
-
-    <form id="volleyballForm">
-      <label for="name">Your Name:</label>
-      <input type="text" id="name" placeholder="Enter your name" required>
-      <button type="submit">Submit ✉️</button>
-
-      <div class="checkboxes">
-        <label><input type="checkbox" id="chk1"> I don’t want a Speedo. I have my own gear.</label>
-        <label><input type="checkbox" id="chk2"> I opt out of narmish before the games.</label>
-        <label><input type="checkbox" id="chk3"> I don’t want to take part in the sunblock ceremony at 8.</label>
-      </div>
-    </form>
-
-    <div class="info">
-      🎯 We aim for <strong>10 players</strong>, but we'll confirm with <strong>8</strong><br><br>
-      🚗 Best to <strong>carpool</strong>. We can take 2–3 cars from KP in Parsippany.  
-      Please leave extra cars in the municipal lot across from KP.
-    </div>
-
-    <div class="footer-quote">
-      If you're committed, you can do it!
-    </div>
+<div class="app">
+  <div class="header">
+    <h1>🖐 Hand Focus Trainer</h1>
+    <p>Improve focus • memory • stability</p>
   </div>
 
-  <script>
-    document.getElementById("volleyballForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const chk1 = document.getElementById("chk1").checked ? "✅ I have my own gear.\n" : "";
-      const chk2 = document.getElementById("chk2").checked ? "✅ I opt out of narmish.\n" : "";
-      const chk3 = document.getElementById("chk3").checked ? "✅ I skip the sunblock ceremony.\n" : "";
+  <div class="card">
+    <div class="exercise-name" id="exerciseName"></div>
+    <div class="hand" id="handIcon">✋</div>
+    <div class="timer" id="timer">30</div>
+    <div class="round" id="round">Round 1 of 6</div>
 
-      if (name) {
-        const subject = encodeURIComponent("KakaReza Volleyball Signup - July 19");
-        const body = encodeURIComponent(`Hey, this is ${name} and I'm in for beach volleyball on Saturday!\n\n${chk1}${chk2}${chk3}`);
-        const mailtoLink = `mailto:nycsal@gmail.com?subject=${subject}&body=${body}`;
-        window.location.href = mailtoLink;
-      } else {
-        alert("Please enter your name!");
+    <div class="controls">
+      <button onclick="startPause()">Start</button>
+      <button class="secondary" onclick="resetApp()">Reset</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const EXERCISE_TIME = 30;
+
+const exercises = [
+  { name: "Open & Close Palm", icon: "✋", anim: "openClose" },
+  { name: "Finger Pinch", icon: "🤏", anim: "pinch" },
+  { name: "Wrist Twist", icon: "✊", anim: "twist" },
+  { name: "Shake Hands", icon: "🖐", anim: "shake" },
+  { name: "Finger Stretch", icon: "🖖", anim: "stretch" },
+  { name: "Finger Taps", icon: "☝️", anim: "tap" }
+];
+
+let index = 0;
+let time = EXERCISE_TIME;
+let interval = null;
+let running = false;
+
+const nameEl = document.getElementById("exerciseName");
+const handEl = document.getElementById("handIcon");
+const timerEl = document.getElementById("timer");
+const roundEl = document.getElementById("round");
+
+function loadExercise() {
+  const ex = exercises[index];
+  nameEl.textContent = ex.name;
+  handEl.textContent = ex.icon;
+  handEl.style.animationName = ex.anim;
+  timerEl.textContent = time;
+  roundEl.textContent = `Round ${index + 1} of ${exercises.length}`;
+}
+
+function startPause() {
+  if (running) {
+    clearInterval(interval);
+    running = false;
+    return;
+  }
+
+  running = true;
+  interval = setInterval(() => {
+    time--;
+    timerEl.textContent = time;
+
+    if (time <= 0) {
+      index++;
+      if (index >= exercises.length) {
+        clearInterval(interval);
+        running = false;
+        alert("🎉 Session complete!");
+        return;
       }
-    });
-  </script>
+      time = EXERCISE_TIME;
+      loadExercise();
+    }
+  }, 1000);
+}
+
+function resetApp() {
+  clearInterval(interval);
+  running = false;
+  index = 0;
+  time = EXERCISE_TIME;
+  loadExercise();
+}
+
+loadExercise();
+</script>
 </body>
 </html>
