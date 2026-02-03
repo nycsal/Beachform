@@ -3,220 +3,295 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Hand Focus Trainer</title>
+<title>Kaka Mental Health – Hand Focus Trainer</title>
 
 <style>
 :root {
-  --bg1: #0f2027;
-  --bg2: #203a43;
-  --bg3: #2c5364;
-  --accent: #ffd166;
-  --card: rgba(255,255,255,0.12);
-  --text: #ffffff;
+  --bg1:#0b132b;
+  --bg2:#1c2541;
+  --bg3:#3a506b;
+  --accent:#ffd166;
+  --soft:#5bc0be;
+  --card:rgba(255,255,255,0.12);
+  --text:#ffffff;
 }
 
-* { box-sizing: border-box; }
+*{box-sizing:border-box;}
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
-  color: var(--text);
-  font-family: "Segoe UI", system-ui, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--text);
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-.app {
-  width: 100%;
-  max-width: 420px;
-  padding: 20px;
+.app{
+  width:100%;
+  max-width:420px;
+  padding:18px;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 20px;
+.header{
+  text-align:center;
+  margin-bottom:16px;
 }
 
-.header h1 {
-  margin: 0;
-  font-size: 1.6rem;
+.brand{
+  font-size:1.7rem;
+  font-weight:700;
+  letter-spacing:0.5px;
 }
 
-.header p {
-  opacity: 0.8;
-  margin-top: 6px;
+.subtitle{
+  font-size:0.9rem;
+  opacity:.85;
 }
 
-.card {
-  background: var(--card);
-  border-radius: 18px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+.card{
+  background:var(--card);
+  border-radius:20px;
+  padding:22px;
+  box-shadow:0 20px 40px rgba(0,0,0,.35);
+  text-align:center;
 }
 
-.exercise-name {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+.exercise-name{
+  font-size:1.15rem;
+  margin-bottom:8px;
 }
 
-.hand {
-  font-size: 5rem;
-  margin: 20px 0;
-  animation-duration: 1.5s;
-  animation-iteration-count: infinite;
+.instruction{
+  font-size:.85rem;
+  opacity:.85;
+  margin-bottom:10px;
 }
 
-.timer {
-  font-size: 2.4rem;
-  font-weight: bold;
+/* Hand Illustration */
+.hand-wrap{
+  margin:14px 0;
 }
 
-.round {
-  margin-top: 8px;
-  opacity: 0.85;
+.hand-svg{
+  width:160px;
+  height:160px;
 }
 
-.controls {
-  display: flex;
-  gap: 12px;
-  margin-top: 18px;
+.finger{
+  transform-origin:50% 90%;
+  animation-duration:1.4s;
+  animation-iteration-count:infinite;
 }
 
-button {
-  flex: 1;
-  padding: 14px;
-  font-size: 1rem;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  background: var(--accent);
-  color: #000;
-  font-weight: 600;
+/* Animations */
+@keyframes openClose{
+  0%,100%{transform:scaleY(1);}
+  50%{transform:scaleY(.6);}
 }
 
-button.secondary {
-  background: #ffffff33;
-  color: #fff;
+@keyframes pinch{
+  0%,100%{transform:scale(.95);}
+  50%{transform:scale(.7);}
 }
 
-@keyframes openClose {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(0.7); }
+@keyframes twist{
+  0%,100%{transform:rotate(0deg);}
+  50%{transform:rotate(25deg);}
 }
 
-@keyframes twist {
-  0%,100% { transform: rotate(0deg); }
-  50% { transform: rotate(25deg); }
+@keyframes shake{
+  0%,100%{transform:translateX(0);}
+  25%{transform:translateX(-12px);}
+  75%{transform:translateX(12px);}
 }
 
-@keyframes pinch {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(0.85) rotate(-10deg); }
+@keyframes stretch{
+  0%,100%{transform:scaleY(1);}
+  50%{transform:scaleY(1.25);}
 }
 
-@keyframes shake {
-  0%,100% { transform: translateX(0); }
-  25% { transform: translateX(-10px); }
-  75% { transform: translateX(10px); }
+@keyframes tap{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(16px);}
 }
 
-@keyframes stretch {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+/* Timer */
+.timer{
+  font-size:2.3rem;
+  font-weight:700;
 }
 
-@keyframes tap {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(15px); }
+.round{
+  opacity:.8;
+  margin-top:6px;
+}
+
+/* Buttons */
+.controls{
+  display:flex;
+  gap:10px;
+  margin-top:16px;
+}
+
+button{
+  flex:1;
+  padding:14px;
+  font-size:1rem;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.primary{
+  background:var(--accent);
+  color:#000;
+}
+
+.secondary{
+  background:rgba(255,255,255,.18);
+  color:#fff;
 }
 </style>
 </head>
 
 <body>
 <div class="app">
+
   <div class="header">
-    <h1>🖐 Hand Focus Trainer</h1>
-    <p>Improve focus • memory • stability</p>
+    <div class="brand">Kaka Mental Health</div>
+    <div class="subtitle">Hand focus • memory • stability</div>
   </div>
 
   <div class="card">
     <div class="exercise-name" id="exerciseName"></div>
-    <div class="hand" id="handIcon">✋</div>
+    <div class="instruction" id="instruction"></div>
+
+    <div class="hand-wrap">
+      <!-- Simple instructional hand SVG -->
+      <svg viewBox="0 0 100 140" class="hand-svg">
+        <rect x="30" y="40" width="40" height="70" rx="20" fill="#ffd166"/>
+        <rect class="finger" x="18" y="10" width="12" height="40" rx="6" fill="#ffd166"/>
+        <rect class="finger" x="32" y="6" width="12" height="44" rx="6" fill="#ffd166"/>
+        <rect class="finger" x="46" y="6" width="12" height="44" rx="6" fill="#ffd166"/>
+        <rect class="finger" x="60" y="10" width="12" height="40" rx="6" fill="#ffd166"/>
+      </svg>
+    </div>
+
     <div class="timer" id="timer">30</div>
-    <div class="round" id="round">Round 1 of 6</div>
+    <div class="round" id="round"></div>
 
     <div class="controls">
-      <button onclick="startPause()">Start</button>
+      <button class="primary" onclick="startPause()">Start</button>
+      <button class="secondary" onclick="skip()">Skip</button>
       <button class="secondary" onclick="resetApp()">Reset</button>
     </div>
   </div>
+
 </div>
 
 <script>
 const EXERCISE_TIME = 30;
 
 const exercises = [
-  { name: "Open & Close Palm", icon: "✋", anim: "openClose" },
-  { name: "Finger Pinch", icon: "🤏", anim: "pinch" },
-  { name: "Wrist Twist", icon: "✊", anim: "twist" },
-  { name: "Shake Hands", icon: "🖐", anim: "shake" },
-  { name: "Finger Stretch", icon: "🖖", anim: "stretch" },
-  { name: "Finger Taps", icon: "☝️", anim: "tap" }
+  {
+    name:"Open & Close Palm",
+    text:"Slowly open your hand, then gently close into a fist.",
+    anim:"openClose"
+  },
+  {
+    name:"Finger Pinch",
+    text:"Pinch thumb to each finger one by one.",
+    anim:"pinch"
+  },
+  {
+    name:"Wrist Twist",
+    text:"Rotate your wrist left and right smoothly.",
+    anim:"twist"
+  },
+  {
+    name:"Hand Shake",
+    text:"Relax and gently shake your hand loose.",
+    anim:"shake"
+  },
+  {
+    name:"Finger Stretch",
+    text:"Stretch fingers wide, feel the length.",
+    anim:"stretch"
+  },
+  {
+    name:"Finger Taps",
+    text:"Tap fingers lightly on an invisible surface.",
+    anim:"tap"
+  }
 ];
 
-let index = 0;
-let time = EXERCISE_TIME;
-let interval = null;
-let running = false;
+let index=0;
+let time=EXERCISE_TIME;
+let running=false;
+let interval=null;
 
-const nameEl = document.getElementById("exerciseName");
-const handEl = document.getElementById("handIcon");
-const timerEl = document.getElementById("timer");
-const roundEl = document.getElementById("round");
+const nameEl=document.getElementById("exerciseName");
+const instEl=document.getElementById("instruction");
+const timerEl=document.getElementById("timer");
+const roundEl=document.getElementById("round");
+const fingers=document.querySelectorAll(".finger");
 
-function loadExercise() {
-  const ex = exercises[index];
-  nameEl.textContent = ex.name;
-  handEl.textContent = ex.icon;
-  handEl.style.animationName = ex.anim;
-  timerEl.textContent = time;
-  roundEl.textContent = `Round ${index + 1} of ${exercises.length}`;
+function loadExercise(){
+  const ex=exercises[index];
+  nameEl.textContent=ex.name;
+  instEl.textContent=ex.text;
+  roundEl.textContent=`Exercise ${index+1} of ${exercises.length}`;
+  timerEl.textContent=time;
+
+  fingers.forEach(f=>{
+    f.style.animationName=ex.anim;
+  });
 }
 
-function startPause() {
-  if (running) {
+function startPause(){
+  if(running){
     clearInterval(interval);
-    running = false;
+    running=false;
     return;
   }
 
-  running = true;
-  interval = setInterval(() => {
+  running=true;
+  interval=setInterval(()=>{
     time--;
-    timerEl.textContent = time;
+    timerEl.textContent=time;
 
-    if (time <= 0) {
-      index++;
-      if (index >= exercises.length) {
-        clearInterval(interval);
-        running = false;
-        alert("🎉 Session complete!");
-        return;
-      }
-      time = EXERCISE_TIME;
-      loadExercise();
+    if(time<=0){
+      next();
     }
-  }, 1000);
+  },1000);
 }
 
-function resetApp() {
+function next(){
+  time=EXERCISE_TIME;
+  index++;
+  if(index>=exercises.length){
+    clearInterval(interval);
+    running=false;
+    alert("Great job 🌿 Session complete.");
+    return;
+  }
+  loadExercise();
+}
+
+function skip(){
+  if(!running) return next();
+  next();
+}
+
+function resetApp(){
   clearInterval(interval);
-  running = false;
-  index = 0;
-  time = EXERCISE_TIME;
+  running=false;
+  index=0;
+  time=EXERCISE_TIME;
   loadExercise();
 }
 
